@@ -18,13 +18,6 @@ function Navbar() {
         </Link>
       </div>
 
-      <div className="navbar-center">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="search-input"
-        />
-      </div>
 
       <div className="navbar-right">
         <div className="navbar-user-actions">
