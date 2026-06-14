@@ -93,22 +93,25 @@ function CreatePost({ refreshPosts }) {
         </div>
  
         <button className="post-submit-btn" onClick={handlePost} style={{ 
-          padding: '8px', 
+          padding: '8px 12px', 
           backgroundColor: '#007bff', 
           color: 'white', 
           border: 'none', 
-          borderRadius: '40px',
-          width: '10rem' ,
+          borderRadius: '40px', 
           cursor: 'pointer', 
-          fontWeight: '800',
+          fontWeight: '600',
           transition: 'background 0.2s',
           display: 'flex',
           alignItems: 'center',
           gap: '5px',
           fontSize: '1.4rem',
+          height: 'auto',
+          width : "10rem",
+          userSelect: 'none',
+          WebkitTapHighlightColor: 'transparent',
           justifyContent: 'center'
         }}>
-          <span style={{ fontSize: '2rem' }}>🚀</span> Post
+          <span style={{ fontSize: '1.4rem' }}>🚀</span> Post
         </button>
       </div>
     </div>

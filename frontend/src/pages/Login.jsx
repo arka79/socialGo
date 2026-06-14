@@ -60,7 +60,11 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
  
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading} style={{ 
+          userSelect: 'none', 
+          WebkitTapHighlightColor: 'transparent',
+          cursor: 'pointer' 
+        }}>
           {isLoading ? "Logging in..." : "Login"}
         </button>
       </form>

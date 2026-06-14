@@ -65,7 +65,11 @@ function Signup() {
           }
         />
  
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading} style={{ 
+          userSelect: 'none', 
+          WebkitTapHighlightColor: 'transparent',
+          cursor: 'pointer' 
+        }}>
           {isLoading ? "Signing up..." : "Signup"}
         </button>
       </form>

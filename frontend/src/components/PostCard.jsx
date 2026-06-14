@@ -81,15 +81,16 @@ function PostCard({
         justifyContent: 'space-around', 
         padding: '20px 0', 
         borderTop: '1px solid #eee',
-        alignItems: 'center' 
+        alignItems: 'center',
+        userSelect: 'none'
       }}>
         <div className="action-item" onClick={handleLike} style={{ 
           cursor: 'pointer', 
-          display: 'flex',
-          color: 'inherit',  
+          display: 'flex', 
           alignItems: 'center', 
           gap: '8px', 
-          fontSize: '1.2rem' 
+          fontSize: '1.2rem',
+          WebkitTapHighlightColor: 'transparent'
         }}>
           <span className={`action-icon ${isLiked ? 'liked' : ''}`} style={{ fontSize: '1.5rem' }}>
             {isLiked ? '❤️' : '🤍'}
@@ -104,13 +105,16 @@ function PostCard({
           display: 'flex', 
           alignItems: 'center', 
           gap: '8px', 
-          fontSize: '1.2rem' 
+          fontSize: '1.2rem',
+          WebkitTapHighlightColor: 'transparent'
         }}>
           <span className="action-icon" style={{ fontSize: '1.5rem' }}>💬</span>
           <span className="action-count" style={{ fontWeight: 'bold' }}>{post.comments?.length || 0}</span>
         </Link>
       </div>
-    </div>
+ 
+       
+      </div>
   );
 }
 
