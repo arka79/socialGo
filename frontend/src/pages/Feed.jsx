@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
 import CreatePost from "../components/CreatePost";
 import PostCard from "../components/PostCard";
 import Navbar from "../components/Navbar";
 function Feed() {
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
  
   const fetchPosts = async () => {
@@ -16,8 +18,13 @@ function Feed() {
   };
  
   useEffect(() => {
-    fetchPosts();
-  }, []);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    } else {
+      fetchPosts();
+    }
+  }, [navigate]);
  
   return (
     <>
@@ -37,9 +44,5 @@ function Feed() {
     </>
   );
 }
-  
  
-
-
-
 export default Feed;
