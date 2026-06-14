@@ -1,7 +1,7 @@
 import { useState } from "react";
 import API from "../services/api";
 
-function CommentSection({
+function CommentModal({
   post,
   refreshPosts,
 }) {
@@ -54,11 +54,20 @@ function CommentSection({
           <div className="comment-list">
             {post.comments?.map(
               (comment, index) => (
-                <div key={index} className="comment-item">
-                  <strong className="comment-user">
+                <div key={index} className="comment-item" style={{ marginBottom: '10px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                  <strong className="comment-user" style={{ color: '#333', fontSize: '0.9rem' }}>
                     {comment.username}
                   </strong>
-                  <span className="comment-text">: {comment.text}</span>
+                  <span className="comment-text" style={{ 
+                    fontWeight: '800', 
+                    fontSize: '1.5rem', 
+                    color: 'inherit',
+                    color: '#1a252f',
+                    lineHeight: '1.4',
+                    fontFamily: '"Segoe UI", Roboto, sans-serif'
+                  }}>
+                    {comment.text}
+                  </span>
                 </div>
               )
             )}
@@ -69,4 +78,4 @@ function CommentSection({
   );
 }
 
-export default CommentSection;
+export default CommentModal;

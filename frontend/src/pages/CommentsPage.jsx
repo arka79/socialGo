@@ -72,7 +72,7 @@ function CommentsPage() {
             {post.comments?.map((c, i) => (
               <div key={i} className="comment-item">
                 <div className="comment-user-info">
-                  <strong className="comment-user">{c.username}</strong>
+                  <strong className="comment-user">{c.username} : </strong>
                   <span className="comment-text">{c.text}</span>
                 </div>
               </div>

@@ -22,14 +22,51 @@ function PostCard({
 
   return (
     <div className="post-card">
-      <div className="post-header">
-        <div className="post-avatar">
+      <div className="post-header" style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        marginBottom: '15px', 
+        gap: '12px' 
+      }}>
+        <div className="post-avatar" style={{ 
+          width: '45px', 
+          height: '45px', 
+          borderRadius: '50%', 
+          backgroundColor: '#e1306c', 
+          color: 'white', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          fontSize: '1.2rem', 
+          fontWeight: 'bold',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        }}>
           {post.username?.charAt(0)?.toUpperCase() || "U"}
         </div>
-        <h3 className="post-username">{post.username}</h3>
+        <h3 className="post-username" style={{ 
+          margin: 0, 
+          fontSize: '1.1rem', 
+          color: '#333', 
+          fontWeight: '600',
+          fontFamily: 'system-ui, -apple-system, sans-serif'
+        }}>{post.username}</h3>
       </div>
-
-      <p className="post-text">{post.text}</p>
+ 
+      <p className="post-text" style={{ 
+        fontSize: '1.1rem', 
+        lineHeight: '1.6', 
+        color: '#2c3e50', 
+        marginBottom: '20px',
+        fontWeight: '500',
+        fontFamily: '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        letterSpacing: '0.3px',
+        textShadow: '0.5px 0.5px 0px rgba(0,0,0,0.05)',
+        paddingLeft: '10px',
+        margin: '0 0 20px 10px',
+        textAlign: 'left'
+      }}>
+        {post.text}
+      </p>
 
       {post.image && (
         <img
@@ -48,7 +85,8 @@ function PostCard({
       }}>
         <div className="action-item" onClick={handleLike} style={{ 
           cursor: 'pointer', 
-          display: 'flex', 
+          display: 'flex',
+          color: 'inherit',  
           alignItems: 'center', 
           gap: '8px', 
           fontSize: '1.2rem' 
