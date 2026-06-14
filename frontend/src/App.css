@@ -1,0 +1,267 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f3f5f9;
+  font-family: Inter, Arial, sans-serif;
+  color: #1f2937;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  height: 70px;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.search-box {
+  width: 350px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.profile-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2563eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* =========================
+   FEED LAYOUT
+========================= */
+
+.feed-container {
+  max-width: 700px;
+  margin: 25px auto;
+  padding: 0 15px;
+}
+
+/* =========================
+   CREATE POST
+========================= */
+
+.create-post {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.create-post textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  min-height: 80px;
+  outline: none;
+  font-size: 15px;
+}
+
+.create-post input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.create-post button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* =========================
+   POST CARD
+========================= */
+
+.post-card {
+  background: white;
+  border-radius: 18px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.post-content {
+  padding: 18px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 12px;
+}
+
+.user-info h4 {
+  font-size: 15px;
+}
+
+.user-info p {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.post-text {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.post-image {
+  width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+}
+
+.post-footer {
+  border-top: 1px solid #e5e7eb;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* =========================
+   COMMENTS
+========================= */
+
+.comment-section {
+  padding: 15px 18px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+}
+
+.comment-btn {
+  margin-top: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+.comment {
+  margin-top: 10px;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* =========================
+   AUTH
+========================= */
+
+.auth-container {
+  width: 400px;
+  margin: 80px auto;
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.auth-container h2 {
+  margin-bottom: 20px;
+}
+
+.auth-container input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .feed-container {
+    width: 100%;
+  }
+
+  .search-box {
+    display: none;
+  }
+
+  .auth-container {
+    width: 92%;
+  }
+}
