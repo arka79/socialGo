@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
-import { useNavigate } from "react-router-dom";
 import CreatePost from "../components/CreatePost";
 import PostCard from "../components/PostCard";
 import Navbar from "../components/Navbar";
 function Feed() {
   const [posts, setPosts] = useState([]);
 
-  const navigate = useNavigate();
+
 
   const fetchPosts = async () => {
   try {
