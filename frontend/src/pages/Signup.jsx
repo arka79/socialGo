@@ -4,34 +4,40 @@ import { useNavigate, Link } from "react-router-dom";
 
 function Signup() {
   const navigate = useNavigate();
-
+ 
   const [form, setForm] = useState({
     username: "",
     email: "",
     password: "",
   });
-
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setError("");
+ 
     if (!form.username || !form.email || !form.password) {
-      alert("Please fill in all fields");
+      setError("Please fill in all fields");
       return;
     }
-
+ 
+    setIsLoading(true);
     try {
       await API.post("/auth/signup", form);
       navigate("/login");
     } catch (err) {
-      alert(err.response?.data?.error || "Signup failed. Please try again.");
+      setError(err.response?.data?.error || "Signup failed. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
-
+ 
   return (
     <>
     <div className="auth-container">
       <h2>Create Account</h2>
-
+ 
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Username"
@@ -40,7 +46,7 @@ function Signup() {
             setForm({ ...form, username: e.target.value })
           }
         />
-
+ 
         <input
           placeholder="Email"
           type="email"
@@ -49,7 +55,7 @@ function Signup() {
             setForm({ ...form, email: e.target.value })
           }
         />
-
+ 
         <input
           type="password"
           placeholder="Password"
@@ -58,11 +64,12 @@ function Signup() {
             setForm({ ...form, password: e.target.value })
           }
         />
-
-        <button type="submit">
-          Signup
+ 
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Signing up..." : "Signup"}
         </button>
       </form>
+      {error && <p className="error-message" style={{ color: "red", marginTop: "10px", textAlign: "center" }}>{error}</p>}
       <Link to="/login">Already have an account? Login</Link>
     </div>
     </>
