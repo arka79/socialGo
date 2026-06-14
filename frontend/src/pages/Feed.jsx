@@ -9,14 +9,11 @@ function Feed() {
 
   const navigate = useNavigate();
 
-const logout = () => {
-  localStorage.clear();
-  navigate("/");
-};
-
   const fetchPosts = async () => {
   try {
     const res = await API.get("/posts/all");
+
+    console.log(res.data);
 
     setPosts(res.data);
   } catch (err) {
@@ -43,6 +40,7 @@ const logout = () => {
       ))}
     </div>
   </>
+
 );
 }
 

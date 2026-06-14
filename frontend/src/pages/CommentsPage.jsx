@@ -1,16 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import API from "../services/api";
 import Navbar from "../components/Navbar";
 
 function CommentsPage() {
   const { postId } = useParams();
-  const navigate = useNavigate();
   const [post, setPost] = useState(null);
   const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     try {
       const res = await API.get(`/posts/${postId}`);
       setPost(res.data);
@@ -19,11 +18,11 @@ function CommentsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [postId]);
 
   useEffect(() => {
     fetchPost();
-  }, [postId]);
+  }, [fetchPost]);
 
   const handlePostComment = async (e) => {
     e.preventDefault();
@@ -41,7 +40,7 @@ function CommentsPage() {
   };
 
   if (loading) return <div className="loading-screen">Loading...</div>;
-  if (!post) return <div>Post not found</div>;
+  if (!post) return <div className="loading-screen">Post not found</div>;
 
   return (
     <div className="comments-page-container">
@@ -59,7 +58,7 @@ function CommentsPage() {
         </div>
 
         <div className="comments-section">
-          <h2>Comments</h2>
+          <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Comments</h2>
           <form onSubmit={handlePostComment} className="comment-input-form">
             <input 
               placeholder="Add a comment..." 
