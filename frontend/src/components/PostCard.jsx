@@ -10,13 +10,23 @@ function PostCard({
       await API.post(
         `/posts/like/${post._id}`
       );
-
+ 
       refreshPosts();
     } catch (err) {
       console.log(err);
     }
   };
-
+ 
+  const handleDeletePost = async () => {
+    if (!window.confirm("Delete this post?")) return;
+    try {
+      await API.delete(`/posts/${post._id}`);
+      refreshPosts();
+    } catch (err) {
+      alert(err.response?.data?.error || "Failed to delete post");
+    }
+  };
+ 
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const isLiked = post.likes?.includes(currentUser?.username);
 
@@ -111,6 +121,22 @@ function PostCard({
           <span className="action-icon" style={{ fontSize: '1.5rem' }}>💬</span>
           <span className="action-count" style={{ fontWeight: 'bold' }}>{post.comments?.length || 0}</span>
         </Link>
+ 
+        {currentUser?.id === post.userId && (
+          <button 
+            onClick={handleDeletePost} 
+            style={{ 
+              backgroundColor: 'transparent', 
+              border: 'none', 
+              color: 'red', 
+              cursor: 'pointer', 
+              fontWeight: 'bold',
+              fontSize: '0.9rem'
+            }}
+          >
+            Delete
+          </button>
+        )}
       </div>
  
        
