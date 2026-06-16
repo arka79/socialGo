@@ -5,28 +5,21 @@ function PostCard({
   post,
   refreshPosts,
 }) {
-  const handleLike = async () => {
+  const handleLike = async (e) => {
+    if (e) e.preventDefault();
     try {
       await API.post(
         `/posts/like/${post._id}`
       );
- 
-      refreshPosts();
+
+      if (refreshPosts) {
+        refreshPosts();
+      }
     } catch (err) {
       console.log(err);
     }
   };
- 
-  const handleDeletePost = async () => {
-    if (!window.confirm("Delete this post?")) return;
-    try {
-      await API.delete(`/posts/${post._id}`);
-      refreshPosts();
-    } catch (err) {
-      alert(err.response?.data?.error || "Failed to delete post");
-    }
-  };
- 
+
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const isLiked = post.likes?.includes(currentUser?.username);
 
@@ -94,14 +87,14 @@ function PostCard({
         alignItems: 'center',
         userSelect: 'none'
       }}>
-        <div className="action-item" onClick={handleLike} style={{ 
-          cursor: 'pointer', 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '8px', 
-          fontSize: '1.2rem',
-          WebkitTapHighlightColor: 'transparent'
-        }}>
+         <div className="action-item" onClick={(e) => handleLike(e)} style={{ 
+           cursor: 'pointer', 
+           display: 'flex', 
+           alignItems: 'center', 
+           gap: '8px', 
+           fontSize: '1.2rem',
+           WebkitTapHighlightColor: 'transparent'
+         }}>
           <span className={`action-icon ${isLiked ? 'liked' : ''}`} style={{ fontSize: '1.5rem' }}>
             {isLiked ? '❤️' : '🤍'}
           </span>
@@ -121,25 +114,8 @@ function PostCard({
           <span className="action-icon" style={{ fontSize: '1.5rem' }}>💬</span>
           <span className="action-count" style={{ fontWeight: 'bold' }}>{post.comments?.length || 0}</span>
         </Link>
- 
-        {currentUser?.id === post.userId && (
-          <button 
-            onClick={handleDeletePost} 
-            style={{ 
-              backgroundColor: 'transparent', 
-              border: 'none', 
-              color: 'red', 
-              cursor: 'pointer', 
-              fontWeight: 'bold',
-              fontSize: '0.9rem'
-            }}
-          >
-            Delete
-          </button>
-        )}
       </div>
  
-       
       </div>
   );
 }

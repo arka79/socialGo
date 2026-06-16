@@ -11,8 +11,8 @@ function Feed() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
  
-  const fetchPosts = async (pageNum = 1) => {
-    setLoading(true);
+  const fetchPosts = async (pageNum = 1, silent = false) => {
+    if (!silent) setLoading(true);
     try {
       const res = await API.get(`/posts/all?page=${pageNum}&limit=10`);
       setPosts(res.data.posts);
@@ -21,7 +21,7 @@ function Feed() {
     } catch (err) {
       console.log(err);
     } finally {
-      setLoading(false);
+      if (!silent) setLoading(false);
     }
   };
  
@@ -45,11 +45,11 @@ function Feed() {
           <p style={{ textAlign: "center" }}>Loading posts...</p>
         ) : (
           posts.map((post) => (
-            <PostCard
-              key={post._id}
-              post={post}
-              refreshPosts={() => fetchPosts(page)}
-            />
+             <PostCard
+               key={post._id}
+               post={post}
+               refreshPosts={() => fetchPosts(page, true)}
+             />
           ))
         )}
  
